@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMM-lab</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+
+    <div class="content">
+
+        <div class="add-course">
+            <form action="/save" method="POST">
+                <input type="text" name="id" placeholder="Ma khoa hoc">
+                <input type="text" name="name" placeholder="Ten khoa hoc">
+                <input type="text" name="description" placeholder="Mo ta">
+                <input type="number" name="price" placeholder="Gia">
+                <button type="submit">Them khoa hoc</button>
+            </form>
+        </div>
+
+        <table>
+            <caption>Danh sach khoa hoc</caption>
+
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Ma khoa hoc</th>
+                    <th>Ten khoa hoc</th>
+                    <th>Mo ta</th>
+                    <th>Gia</th>
+                    <th>Thao tac</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% for (let i = 0; i < courses.length; i++) { %>
+                    <tr>
+                        <td><%= i + 1 %></td>
+                        <td><%= courses[i].id %></td>
+                        <td><%= courses[i].name %></td>
+                        <td><%= courses[i].description %></td>
+                        <td><%= courses[i].price %></td>
+                        <td>
+                            <form action="/delete" method="POST">
+                                <input type="hidden" name="id" value="<%= courses[i].id %>">
+                                <button type="submit">Xoa</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% } %>
+            </tbody>
+            
+        </table>
+    </div>
+    
+</body>
+</html>
